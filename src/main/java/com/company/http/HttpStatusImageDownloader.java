@@ -12,13 +12,15 @@ public class HttpStatusImageDownloader {
         URL url = null;
         try {
             url = new URL(new HttpStatusChecker().getStatusImage(code));
+            new File(RELATIVE_PATH_FOR_WRITING).mkdirs();
         } catch (Exception exc) {
-            exc.printStackTrace();
+            return;
         }
 
         try (InputStream in = new BufferedInputStream(Objects.requireNonNull(url).openStream());
              ByteArrayOutputStream out = new ByteArrayOutputStream();
              FileOutputStream fos = new FileOutputStream(RELATIVE_PATH_FOR_WRITING + nameOfImage);) {
+
 
             byte[] buf = new byte[1024];
             int n;

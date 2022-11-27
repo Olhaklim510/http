@@ -20,7 +20,7 @@ public class HttpStatusChecker {
         final HttpResponse<String> response = CLIENT.send(request, HttpResponse.BodyHandlers.ofString());
 
         if (response.statusCode() == 404) {
-            System.out.println("There is not image for HTTP status "+code);
+            System.out.println("There is not image for HTTP status "+code+"\n");
             throw new Exception("Error 404: file not found for code: "+code);
         }
         return URL.concat(code + ".jpg");
